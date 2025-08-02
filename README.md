@@ -8,24 +8,19 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the app in the development mode.\nOpen [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will reload when you make changes.\nYou may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.\nSee the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder.\nIt correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The build is minified and the filenames include the hashes.\nYour app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
@@ -68,3 +63,43 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## API Endpoints
+
+This web application interacts with a backend API server at `https://localhost:8080`. The following endpoints are used:
+
+### Authentication
+
+-   **`POST https://localhost:8080/api/auth/verify`**
+    -   Verifies an authentication token received after OAuth login.
+    -   **Request Body:** `{ "token": "your_auth_token" }`
+    -   **Response:** `{ "success": true }` or `{ "success": false, "message": "Error details" }`
+
+-   **`GET https://localhost:8080/auth/google`**
+    -   Initiates Google OAuth login flow.
+
+-   **`GET https://localhost:8080/auth/github`**
+    -   Initiates GitHub OAuth login flow.
+
+### Todo Management
+
+-   **`GET https://localhost:8080/api/todos?date={YYYY-MM-DD}`**
+    -   Retrieves all todos for a specific date.
+    -   **Query Parameter:** `date` (e.g., `2025-08-02`)
+    -   **Response:** An array of todo objects.
+
+-   **`POST https://localhost:8080/api/todos`**
+    -   Adds a new todo item.
+    -   **Request Body:** `{ "date": "YYYY-MM-DD", "text": "Todo description", "completed": false }`
+    -   **Response:** The newly created todo object.
+
+-   **`PUT https://localhost:8080/api/todos/{id}`**
+    -   Updates an existing todo item.
+    -   **Path Parameter:** `id` (ID of the todo to update)
+    -   **Request Body:** `{ "date": "YYYY-MM-DD", "text": "Updated description", "completed": true }` (all fields are optional for update)
+    -   **Response:** The updated todo object.
+
+-   **`DELETE https://localhost:8080/api/todos/{id}`**
+    -   Deletes a todo item.
+    -   **Path Parameter:** `id` (ID of the todo to delete)
+    -   **Response:** Success status (e.g., `{ "message": "Todo deleted successfully" }`)

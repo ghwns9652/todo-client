@@ -1,38 +1,250 @@
 .App {
   text-align: center;
+  padding: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.login-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1em;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.login-button:hover {
+  background-color: #007bff;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.login-button .login-icon {
+  font-size: 1.5em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-button:hover {
+  background-color: #f8f9fa;
+}
+
+.main-container.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.header h1 {
+  font-size: 3em;
+  color: #333;
+  margin: 0;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.calendar-container {
+  flex-basis: 70%;
+}
+
+.todo-list-container {
+  flex-basis: 25%;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.todo-list-container h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin: 0;
+}
+
+.success-rate {
+  background-color: #f8f9fa;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.success-rate span {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #495057;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+.input-container input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.input-container button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-width: 80px; /* Added min-width */
+}
+
+.input-container button:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li span {
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+li .edit-container {
+  display: flex;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+li .edit-container input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+li button {
+  background: none;
+  border: 1px solid #ddd;
+  color: #555;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 32px; /* Adjust as needed */
+  height: 32px; /* Adjust as needed */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+li .button-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+li button.check-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+li button.check-button.completed {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+li button.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+li button.delete-button:hover {
+  background-color: #c82333;
 }
